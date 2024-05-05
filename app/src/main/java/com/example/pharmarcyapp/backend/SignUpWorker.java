@@ -1,6 +1,11 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.backend;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+
+import com.example.pharmarcyapp.MainActivity;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,15 +13,26 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class BackgroundWorker extends AsyncTask<Void, Void, String> {
+public class SignUpWorker extends AsyncTask<Void, Void, String> {
     private String url;
     private String data;
     private boolean isPost;
 
-    public BackgroundWorker(String url, String data, boolean isPost) {
+    private  Context context;
+
+    /*
+
+     NOTE I DO NOT KNOW HOW THE FUCK THIS WORKS .
+     DO NOT TOUCH !!!
+     WE CANNOT FIX ANY ISSUES YOU FUCK UP BECAUSE YOU THINK YOUR SMART
+
+     */
+
+    public SignUpWorker(Context context, String url, String data, boolean isPost) {
         this.url = url;
         this.data = data;
         this.isPost = isPost;
+        this.context = context;
     }
 
     @Override
@@ -68,5 +84,8 @@ public class BackgroundWorker extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String result) {
         // Handle the response from the server
         System.out.println("Response: " + result);
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+
     }
 }

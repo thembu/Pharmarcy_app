@@ -1,21 +1,15 @@
 package com.example.pharmarcyapp;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
+import com.example.pharmarcyapp.backend.SignUpWorker;
 
 public class Signup extends AppCompatActivity {
 
@@ -66,7 +60,7 @@ public class Signup extends AppCompatActivity {
         String postData = "Username=" + str_username + "&password=" + str_password + "&medical_aid_no=" + str_medical_aid_no + "&age=" + age + "&gender=" + str_gender;
 
         // Create and execute the BackgroundWorker
-        BackgroundWorker bgworker = new BackgroundWorker("https://lamp.ms.wits.ac.za/home/s2695831/patients.php", postData, true);
+        SignUpWorker bgworker = new SignUpWorker(this,"https://lamp.ms.wits.ac.za/home/s2695831/patients.php", postData, true);
         bgworker.execute();
     }
 }
