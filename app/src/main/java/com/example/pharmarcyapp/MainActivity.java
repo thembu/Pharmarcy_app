@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
         // Construct the postData string with gender included
 
         // Create and execute the BackgroundWorker
-        LoginWorker bgworker = new LoginWorker(this,"https://lamp.ms.wits.ac.za/home/s2695831/patients2.php", str_username, str_password);
-        bgworker.execute();
+       LoginWorker bgworker = new LoginWorker(this,"https://lamp.ms.wits.ac.za/home/s2695831/patients2.php", str_username, str_password);
+       bgworker.execute();
 
     }
 
