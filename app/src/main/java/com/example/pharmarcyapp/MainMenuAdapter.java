@@ -1,6 +1,7 @@
 package com.example.pharmarcyapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,14 @@ import java.util.ArrayList;
 
 public class MainMenuAdapter extends ArrayAdapter<MainMenu> {
 
+    Context context;
     public MainMenuAdapter(@NonNull Context context, ArrayList<MainMenu> courseModelArrayList) {
         super(context, 0, courseModelArrayList);
+        this.context = context;
+
     }
+
+
 
     @NonNull
     @Override
@@ -33,6 +39,25 @@ public class MainMenuAdapter extends ArrayAdapter<MainMenu> {
 
         courseTV.setText(courseModel.getCourse_name());
         courseIV.setImageResource(courseModel.getImgid());
+
+
+        if (position == 3) {
+            listitemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Handle click event for this specific item (Pharmacies near you)
+                    Intent intent = new Intent(context, nearbySearch.class); // Replace YourActivity with the desired activity class
+                    context.startActivity(intent);
+                }
+            });
+        }
+
         return listitemView;
     }
+
+
+
+
+
+
 }
