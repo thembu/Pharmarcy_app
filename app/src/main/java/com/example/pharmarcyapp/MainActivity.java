@@ -12,7 +12,7 @@ import com.example.pharmarcyapp.backend.LoginWorker;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText username, password;
+    EditText email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        username = findViewById(R.id.usernameEditText);
+        email = findViewById(R.id.emailEditText);
         password = findViewById(R.id.passwordEditText);
 
 
@@ -51,14 +51,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onLogin(View view) {
-        String str_username = username.getText().toString();
+        String str_email = email.getText().toString();
         String str_password = password.getText().toString();
 
 
         // Construct the postData string with gender included
 
         // Create and execute the BackgroundWorker
-       LoginWorker bgworker = new LoginWorker(this,"https://lamp.ms.wits.ac.za/home/s2695831/patients2.php", str_username, str_password);
+       LoginWorker bgworker = new LoginWorker(this,"https://lamp.ms.wits.ac.za/home/s2695831/patients2.php", str_email, str_password);
        bgworker.execute();
 
     }

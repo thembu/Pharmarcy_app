@@ -58,8 +58,10 @@ public class LoginWorker extends AsyncTask<Void, Void, String> {
             OutputStream os = connection.getOutputStream();
 
             // Construct data to be sent to the server
-            String postData = "username=" + URLEncoder.encode(username, "UTF-8") +
+            String postData = "email=" + URLEncoder.encode(username, "UTF-8") +
                     "&password=" + URLEncoder.encode(password, "UTF-8");
+
+            System.out.println(postData);
 
             // Write data to output stream
             os.write(postData.getBytes());
