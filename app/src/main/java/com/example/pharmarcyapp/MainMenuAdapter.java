@@ -46,7 +46,7 @@ public class MainMenuAdapter extends ArrayAdapter<MainMenu> {
                 @Override
                 public void onClick(View v) {
                     // Handle click event for this specific item (Pharmacies near you)
-                    Intent intent = new Intent(context, nearbySearch.class); // Replace YourActivity with the desired activity class
+                    Intent intent = new Intent(context, Pharmarcies.class); // Replace YourActivity with the desired activity class
                     context.startActivity(intent);
                 }
             });
