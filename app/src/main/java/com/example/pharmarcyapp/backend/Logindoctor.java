@@ -16,7 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class LoginWorker extends AsyncTask<Void, Void, String> {
+public class Logindoctor extends AsyncTask<Void, Void, String> {
     private String url;
     private String username;
     private String password;
@@ -33,7 +33,7 @@ public class LoginWorker extends AsyncTask<Void, Void, String> {
      */
 
 
-    public LoginWorker(Context context, String url, String username, String password) {
+    public Logindoctor(Context context, String url, String username, String password) {
         this.context = context;
         this.url = url;
         this.username = username;
@@ -58,7 +58,7 @@ public class LoginWorker extends AsyncTask<Void, Void, String> {
             OutputStream os = connection.getOutputStream();
 
             // Construct data to be sent to the server
-            String postData = "email=" + URLEncoder.encode(username, "UTF-8") +
+            String postData = "doctorID=" + URLEncoder.encode(username, "UTF-8") +
                     "&password=" + URLEncoder.encode(password, "UTF-8");
 
             System.out.println(postData);
