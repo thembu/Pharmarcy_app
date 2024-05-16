@@ -5,15 +5,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -27,7 +29,9 @@ public class Pharmarcies extends AppCompatActivity {
     private static final String TAG = "Pharmacies";
     private OkHttpClient client;
     private EditText locationEditText;
-    private TextView resultTextView;
+    private RecyclerView recyclerView;
+    private PharmacyAdapter adapter;
+    private ArrayList<Pharmacy> pharmacyList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,8 @@ public class Pharmarcies extends AppCompatActivity {
 
         client = new OkHttpClient();
         locationEditText = findViewById(R.id.locationEditText);
-        resultTextView = findViewById(R.id.resultTextView);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Button searchButton = findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -49,9 +54,12 @@ public class Pharmarcies extends AppCompatActivity {
             }
         });
     }
+
     private void searchPharmacies(String locationName) {
         // Clear previous results
-        resultTextView.setText("");
+        pharmacyList = new ArrayList<>();
+        adapter = new PharmacyAdapter(pharmacyList);
+        recyclerView.setAdapter(adapter);
 
         // Build the URL for the text search request
         HttpUrl.Builder urlBuilder = HttpUrl.parse("https://maps.googleapis.com/maps/api/place/textsearch/json").newBuilder();
@@ -95,12 +103,11 @@ public class Pharmarcies extends AppCompatActivity {
         });
     }
 
-
     private void getPlaceDetails(String placeId) {
         // Build the URL for the Place Details request
         HttpUrl.Builder urlBuilder = HttpUrl.parse("https://maps.googleapis.com/maps/api/place/details/json").newBuilder();
         urlBuilder.addQueryParameter("place_id", placeId);
-        urlBuilder.addQueryParameter("fields", "name,formatted_address,formatted_phone_number");
+        urlBuilder.addQueryParameter("fields", "name,formatted_address,formatted_phone_number,photos");
         urlBuilder.addQueryParameter("key", "AIzaSyCCxkJSJvdtLyGkZe3v-vPV7WrnagacMKk");
 
         String url = urlBuilder.build().toString();
@@ -128,13 +135,19 @@ public class Pharmarcies extends AppCompatActivity {
                         final String name = result.getString("name");
                         final String address = result.getString("formatted_address");
                         final String phoneNumber = result.optString("formatted_phone_number", "Phone number not available");
+                        JSONArray photos = result.optJSONArray("photos");
+                        String photoReference = null;
+                        if (photos != null && photos.length() > 0) {
+                            JSONObject photo = photos.getJSONObject(0); // Get the first photo
+                            photoReference = photo.getString("photo_reference");
+                        }
 
+                        final String finalPhotoReference = photoReference;
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                resultTextView.append("Name: " + name + "\n");
-                                resultTextView.append("Address: " + address + "\n");
-                                resultTextView.append("Phone: " + phoneNumber + "\n\n");
+                                pharmacyList.add(new Pharmacy(name, address, phoneNumber, finalPhotoReference));
+                                adapter.notifyDataSetChanged();
                             }
                         });
                     } catch (JSONException e) {
@@ -146,4 +159,5 @@ public class Pharmarcies extends AppCompatActivity {
             }
         });
     }
+
 }
