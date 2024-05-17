@@ -40,24 +40,34 @@ public class MainMenuAdapter extends ArrayAdapter<MainMenu> {
         courseTV.setText(courseModel.getCourse_name());
         courseIV.setImageResource(courseModel.getImgid());
 
-
-        if (position == 3) {
+        if (position == 0) {
             listitemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // Handle click event for this specific item (Pharmacies near you)
-                    Intent intent = new Intent(context, Pharmarcies.class); // Replace YourActivity with the desired activity class
+                    Intent intent = new Intent(context, Presidcard.class); // Replace YourActivity with the desired activity class
                     context.startActivity(intent);
                 }
             });
+
         }
 
-        return listitemView;
+
+            if (position == 3) {
+                listitemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Handle click event for this specific item (Pharmacies near you)
+                        Intent intent = new Intent(context, Pharmarcies.class); // Replace YourActivity with the desired activity class
+                        context.startActivity(intent);
+                    }
+                });
+            }
+
+            return listitemView;
+        }
+
+
     }
 
 
-
-
-
-
-}
