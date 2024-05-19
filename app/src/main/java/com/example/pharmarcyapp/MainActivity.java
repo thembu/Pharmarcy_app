@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText username, password;
 
+    public static String  email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onLogin(v);
+
             }
         });
 
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     public void onLogin(View view) {
         String str_username = username.getText().toString();
         String str_password = password.getText().toString();
-
+        email = str_username;
         // Determine if the username represents a doctor or a patient
         boolean isDoctor = str_username.matches("\\d+");
 
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
            // postData = "doctorID=" + str_username + "&password=" + str_password;
             Logindoctor bgworker = new Logindoctor(this, url, str_username, str_password);
             bgworker.execute();
+
         } else {
             url = "https://lamp.ms.wits.ac.za/home/s2695831/patients2.php";
            // postData = "Username=" + str_username + "&password=" + str_password;
@@ -101,6 +105,11 @@ public class MainActivity extends AppCompatActivity {
 //            bgworker.execute();
             LoginWorker bgworker = new LoginWorker(this, url, str_username, str_password);
             bgworker.execute();
+
+            Intent intents = new Intent(MainActivity.this, Prescription_patient.class);
+            String email = str_username;
+            intents.putExtra("EMAIL", email);
+            startActivity(intents);
         }
 
         // Create and execute the BackgroundWorker

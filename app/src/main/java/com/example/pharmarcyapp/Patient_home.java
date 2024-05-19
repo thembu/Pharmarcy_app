@@ -1,3 +1,4 @@
+
 package com.example.pharmarcyapp;
 
 import android.content.Context;
@@ -11,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class Home  extends AppCompatActivity {
+public class Patient_home  extends AppCompatActivity {
     GridView coursesGV;
 
 
@@ -25,15 +26,16 @@ public class Home  extends AppCompatActivity {
         coursesGV = findViewById(R.id.items);
         ArrayList<MainMenu> courseModelArrayList = new ArrayList<MainMenu>();
 
-        courseModelArrayList.add(new MainMenu("Prescription Management", R.drawable.pill));
-       // courseModelArrayList.add(new MainMenu("Search for medication", R.drawable.search));
-       // courseModelArrayList.add(new MainMenu("Health profile", R.drawable.profile));
+        //courseModelArrayList.add(new MainMenu("Prescription Management", R.drawable.pill));
+        courseModelArrayList.add(new MainMenu("Search for medication", R.drawable.search));
+        courseModelArrayList.add(new MainMenu("Health profile", R.drawable.profile));
         courseModelArrayList.add(new MainMenu("Pharmacies near you", R.drawable.location));
+        courseModelArrayList.add(new MainMenu("View Prescriptions", R.drawable.pill));
 
 
 
 
-        MainMenuAdapter adapter = new MainMenuAdapter(this, courseModelArrayList);
+        MainMenuAdapter1 adapter = new MainMenuAdapter1(this, courseModelArrayList);
 
         coursesGV.setAdapter(adapter);
 

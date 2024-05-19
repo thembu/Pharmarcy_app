@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.example.pharmarcyapp.Home;
+import com.example.pharmarcyapp.Patient_home;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -94,7 +95,7 @@ public class LoginWorker extends AsyncTask<Void, Void, String> {
         // Check if login is successful
         if (result.equals("Login successful")) {
             // If login is successful, move to the home screen
-            Intent intent = new Intent(context, Home.class);
+            Intent intent = new Intent(context, Patient_home.class);
             context.startActivity(intent);
             // Finish the current activity to prevent going back to the login screen using the back button
             ((Activity) context).finish();
