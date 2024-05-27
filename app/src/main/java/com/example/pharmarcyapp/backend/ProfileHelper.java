@@ -1,12 +1,13 @@
 package com.example.pharmarcyapp.backend;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.example.pharmarcyapp.Patients.Menu.Home;
+import com.example.pharmarcyapp.Patients.Menu.Patient_home;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,12 +17,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class Logindoctor extends AsyncTask<Void, Void, String> {
-    private String url;
-    private String username;
-    private String password;
-
-    private  Context context;
+public class ProfileHelper extends AsyncTask<Void, Void, String> {
+     String url ,username , password ,  medical_aid_no ,    email ,  conditions;
+     int age;
+    @SuppressLint("StaticFieldLeak")
+    private final Context context;
 
 
       /*
@@ -33,11 +33,16 @@ public class Logindoctor extends AsyncTask<Void, Void, String> {
      */
 
 
-    public Logindoctor(Context context, String url, String username, String password) {
+    public ProfileHelper(Context context, String url, String username, String password , String medical_aid_no , int age  , String email , String conditions) {
         this.context = context;
         this.url = url;
         this.username = username;
         this.password = password;
+        this.age = age;
+        this.conditions = conditions;
+        this.medical_aid_no = medical_aid_no;
+        this.email = email;
+
     }
 
     @Override
@@ -58,8 +63,8 @@ public class Logindoctor extends AsyncTask<Void, Void, String> {
             OutputStream os = connection.getOutputStream();
 
             // Construct data to be sent to the server
-            String postData = "doctorID=" + URLEncoder.encode(username, "UTF-8") +
-                    "&password=" + URLEncoder.encode(password, "UTF-8");
+            String postData = "username=" + URLEncoder.encode(username, "UTF-8") +
+                    "&password=" + URLEncoder.encode(password, "UTF-8") +  "&medical_aid_no=" + URLEncoder.encode(medical_aid_no, "UTF-8") +  "&age=" + age +  "&email=" + URLEncoder.encode(email, "UTF-8") + "&conditions=" + URLEncoder.encode(conditions, "UTF-8");
 
             System.out.println(postData);
 
@@ -92,9 +97,9 @@ public class Logindoctor extends AsyncTask<Void, Void, String> {
         // Handle the response from the server
         System.out.println("Response: " + result);
         // Check if login is successful
-        if (result.equals("Login successful")) {
+        if (result.equals("Update successful")) {
             // If login is successful, move to the home screen
-            Intent intent = new Intent(context, Home.class);
+            Intent intent = new Intent(context, Patient_home.class);
             context.startActivity(intent);
             // Finish the current activity to prevent going back to the login screen using the back button
             ((Activity) context).finish();

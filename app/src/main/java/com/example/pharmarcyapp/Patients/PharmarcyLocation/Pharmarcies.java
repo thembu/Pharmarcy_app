@@ -1,4 +1,4 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.Patients.PharmarcyLocation;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +9,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pharmarcyapp.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

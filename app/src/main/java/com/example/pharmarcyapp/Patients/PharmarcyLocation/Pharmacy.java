@@ -1,4 +1,4 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.Patients.PharmarcyLocation;
 
 public class Pharmacy {
     private String name;

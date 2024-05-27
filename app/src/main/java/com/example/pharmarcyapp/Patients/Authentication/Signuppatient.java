@@ -1,4 +1,4 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.Patients.Authentication;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pharmarcyapp.R;
 import com.example.pharmarcyapp.backend.SignUpWorker;
 
 public class Signuppatient extends AppCompatActivity {
@@ -52,7 +53,6 @@ public class Signuppatient extends AppCompatActivity {
         String str_medical_aid_no = editTextMedicalAidNo.getText().toString();
         String str_email = editTextemail.getText().toString();
 
-        // Parse age to integer
         int age = Integer.parseInt(str_age);
 
         int radioButtonID = radioGroupGender.getCheckedRadioButtonId();

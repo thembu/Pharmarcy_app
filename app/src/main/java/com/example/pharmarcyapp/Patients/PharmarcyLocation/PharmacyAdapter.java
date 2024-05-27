@@ -1,4 +1,4 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.Patients.PharmarcyLocation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pharmarcyapp.Pharmacy;
+import com.example.pharmarcyapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

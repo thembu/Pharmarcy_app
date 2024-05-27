@@ -1,4 +1,4 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.Patients.Menu;
 
 
         import android.content.Context;
@@ -11,6 +11,13 @@ package com.example.pharmarcyapp;
         import android.widget.TextView;
         import androidx.annotation.NonNull;
         import androidx.annotation.Nullable;
+
+        import com.example.pharmarcyapp.Patients.PharmarcyLocation.Pharmarcies;
+        import com.example.pharmarcyapp.Patients.ViewPrescriptions.Prescription_patient;
+        import com.example.pharmarcyapp.Patients.MedicationSearch.Products_patient;
+        import com.example.pharmarcyapp.Patients.HealtProfile.ProfileMenu;
+        import com.example.pharmarcyapp.R;
+
         import java.util.ArrayList;
 
 public class MainMenuAdapter1 extends ArrayAdapter<MainMenu> {
@@ -56,7 +63,7 @@ public class MainMenuAdapter1 extends ArrayAdapter<MainMenu> {
                 @Override
                 public void onClick(View v) {
                     // Handle click event for this specific item (Pharmacies near you)
-                    Intent intent = new Intent(context, HealthProfile.class); // Replace YourActivity with the desired activity class
+                    Intent intent = new Intent(context, ProfileMenu.class); // Replace YourActivity with the desired activity class
                     context.startActivity(intent);
                 }
             });

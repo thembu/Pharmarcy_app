@@ -1,7 +1,5 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.Patients.ViewPrescriptions;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -12,11 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import com.example.pharmarcyapp.MainActivity;
+import com.example.pharmarcyapp.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,25 +19,27 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class Prescription_patient extends AppCompatActivity {
 
     private LinearLayout prescriptionsContainer;
-    private OkHttpClient client;
+
+    private OkHttpClient client = new OkHttpClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewprescriptions);
         prescriptionsContainer = findViewById(R.id.prescriptionsContainer);
-        client = new OkHttpClient();
 
-        Intent intent = getIntent();
-        String email = "";
-        if (intent != null && intent.hasExtra("EMAIL")) {
-            email = intent.getStringExtra("EMAIL");
-        }
+        String user_email = MainActivity.email;
 
-        fetchPatientId(email);
+        fetchPatientId(user_email);
     }
 
     private void fetchPatientId(String email) {
@@ -60,32 +57,35 @@ public class Prescription_patient extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String responseData = response.body().string();
-                    processPatientIdJSON(responseData);
-                } else {
-                    runOnUiThread(() -> Toast.makeText(Prescription_patient.this, "Failed to fetch patient ID", Toast.LENGTH_SHORT).show());
+                    final String responseData = response.body().string();
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                JSONArray userData = new JSONArray(responseData);
+                                if (userData.length() > 0) {
+                                    JSONObject data = userData.getJSONObject(0);
+                                    String str_id = data.getString("patient_id");
+
+                                        int patientId = Integer.parseInt(str_id);
+                                        fetchPrescriptions(patientId);
+
+                                } else {
+                                    Toast.makeText(Prescription_patient.this, "No patient data found", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(Prescription_patient.this, "Error parsing patient data", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });
     }
 
-    private void processPatientIdJSON(String json) {
-        try {
-            JSONArray all = new JSONArray(json);
-            if (all.length() > 0) {
-                JSONObject item = all.getJSONObject(0);
-                String patientId = item.getString("patient_id");
-                fetchPrescriptions(patientId);
-            } else {
-                runOnUiThread(() -> Toast.makeText(Prescription_patient.this, "No patient ID found", Toast.LENGTH_SHORT).show());
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            runOnUiThread(() -> Toast.makeText(Prescription_patient.this, "Error processing patient ID", Toast.LENGTH_SHORT).show());
-        }
-    }
-
-    private void fetchPrescriptions(String patientId) {
+    private void fetchPrescriptions(int patientId) {
         Request request = new Request.Builder()
                 .url("https://lamp.ms.wits.ac.za/home/s2695831/viewprescriptions.php?patient_id=" + patientId)
                 .build();

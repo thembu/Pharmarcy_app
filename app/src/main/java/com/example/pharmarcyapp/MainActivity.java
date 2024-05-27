@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.pharmarcyapp.Doctors.Authentication.Signupdoctor;
+import com.example.pharmarcyapp.Patients.Authentication.Signuppatient;
+import com.example.pharmarcyapp.Patients.ViewPrescriptions.Prescription_patient;
 import com.example.pharmarcyapp.backend.LoginWorker;
 import com.example.pharmarcyapp.backend.Logindoctor;
 

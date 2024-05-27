@@ -8,7 +8,7 @@
 
 
     android:padding="16dp"
-    tools:context=".Signupdoctor">
+    tools:context=".Doctors.Authentication.Signupdoctor">
 
     <EditText
         android:id="@+id/editTextDoctorFullName"

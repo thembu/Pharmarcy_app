@@ -1,4 +1,4 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.Doctors.Authentication;
 
 
 
@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pharmarcyapp.R;
 import com.example.pharmarcyapp.backend.SignUpWorker;
 
 public class Signupdoctor extends AppCompatActivity {

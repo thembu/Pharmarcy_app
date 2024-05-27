@@ -1,6 +1,5 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.Doctors.ViewPrescriptions;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -24,6 +23,7 @@ import okhttp3.Response;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.pharmarcyapp.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;

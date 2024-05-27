@@ -3,30 +3,11 @@ package com.example.pharmarcyapp.backend;
 
 // File: SignUpWorkere.java
 
-        import static android.content.Intent.getIntent;
-
         import android.content.Context;
         import android.content.Intent;
         import android.os.AsyncTask;
-        import android.os.Bundle;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.LinearLayout;
-        import android.widget.TextView;
 
-        import androidx.appcompat.app.AppCompatActivity;
-        import androidx.constraintlayout.widget.ConstraintLayout;
-
-        import com.example.pharmarcyapp.MainActivity;
-        import com.example.pharmarcyapp.Prescription;
-        import com.example.pharmarcyapp.Presidcard;
-        import com.example.pharmarcyapp.R;
-        import com.google.android.material.textfield.TextInputEditText;
-
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
+        import com.example.pharmarcyapp.Doctors.ViewPrescriptions.Presidcard;
 
         import java.io.BufferedReader;
         import java.io.IOException;
@@ -34,14 +15,6 @@ package com.example.pharmarcyapp.backend;
         import java.io.OutputStream;
         import java.net.HttpURLConnection;
         import java.net.URL;
-
-        import okhttp3.Call;
-        import okhttp3.Callback;
-        import okhttp3.MediaType;
-        import okhttp3.OkHttpClient;
-        import okhttp3.Request;
-        import okhttp3.RequestBody;
-        import okhttp3.Response;
 
 public class  Prescriptionfill extends AsyncTask<Void, Void, String> {
     private String url;

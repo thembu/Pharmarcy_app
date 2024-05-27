@@ -1,4 +1,4 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.Doctors.ViewPrescriptions;
 
 
 import android.annotation.SuppressLint;
@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.pharmarcyapp.R;
 import com.example.pharmarcyapp.backend.Prescriptionfill;
 import com.google.android.material.textfield.TextInputEditText;
 

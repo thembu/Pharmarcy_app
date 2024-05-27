@@ -1,4 +1,4 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.Doctors.ViewPrescriptions;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.example.pharmarcyapp.R;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -25,7 +28,7 @@ public class ViewPrescriptions extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_viewprescriptions);  // Set the correct layout
+        setContentView(R.layout.activity_viewprescriptions); // Make sure to set the correct layout
 
         prescriptionsContainer = findViewById(R.id.prescriptionsContainer);  // Find the LinearLayout inside the ScrollView
 

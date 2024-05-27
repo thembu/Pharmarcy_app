@@ -1,13 +1,13 @@
-package com.example.pharmarcyapp;
+package com.example.pharmarcyapp.Patients.HealtProfile;
 
-public class MainMenu {
+public class ProfileMenuSetter {
 
     // string course_name for storing course_name
     // and imgid for storing image id.
     private String course_name;
     private int imgid;
 
-    public MainMenu(String course_name, int imgid) {
+    public ProfileMenuSetter(String course_name, int imgid) {
         this.course_name = course_name;
         this.imgid = imgid;
     }

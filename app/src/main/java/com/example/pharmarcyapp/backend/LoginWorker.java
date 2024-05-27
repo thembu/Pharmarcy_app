@@ -6,8 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.example.pharmarcyapp.Home;
-import com.example.pharmarcyapp.Patient_home;
+import com.example.pharmarcyapp.Patients.Menu.Patient_home;
 
 import java.io.BufferedReader;
 import java.io.IOException;
