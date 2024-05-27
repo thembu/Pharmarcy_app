@@ -24,7 +24,7 @@ public class ProfileMenu  extends AppCompatActivity {
         courseModelArrayList.add(new ProfileMenuSetter("Edit user information", R.drawable.pill));
         // courseModelArrayList.add(new MainMenu("Search for medication", R.drawable.search));
         // courseModelArrayList.add(new MainMenu("Health profile", R.drawable.profile));
-        courseModelArrayList.add(new ProfileMenuSetter("See medical Records", R.drawable.location));
+        courseModelArrayList.add(new ProfileMenuSetter("See medical Records", R.drawable.records));
 
 
 
